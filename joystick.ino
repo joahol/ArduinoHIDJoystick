@@ -20,9 +20,8 @@ void setup(){
   }
 
  void loop(){
-  Serial.println(".");
   int switchState = digitalRead(switchPin);
-  if(switchState==HIGH){Serial.print("Mouse is realy alive");
+  if(switchState==HIGH){
   Mouse.begin();
   }
   if(switchState != lastSwitchState){
@@ -30,11 +29,9 @@ void setup(){
       mouseIsActive=true;
       digitalWrite(ledPin, mouseIsActive);
       Mouse.begin();
-      Serial.println("Mouse active");
       }
       else{
         mouseIsActive=false;
-        Serial.println("Mouse is sleeping");
         }
       }
       lastSwitchState = switchState;
@@ -42,7 +39,6 @@ void setup(){
       int yRead = readAxis(A1);
       if(mouseIsActive){
         Mouse.move(xRead, yRead, 0);
-        Serial.println("mousemove");
         }
         if(digitalRead(mouseButton)==HIGH){
           if(!Mouse.isPressed(MOUSE_LEFT)){
